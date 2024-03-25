@@ -1,10 +1,7 @@
 import "./styles.css";
 import { useState } from 'react';
 
-export default function PlayApp() {
-  const [playState, setPlayState] = useState({
-    
-  });
+export default function App() {
 
   return (
     <div className="App">
