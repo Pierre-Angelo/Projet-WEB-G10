@@ -1,0 +1,42 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const Base = require("./model/card");
+
+const app = express();
+const router = express.Router();
+
+mongoose.connect("mongodb://localhost:3010/");
+var db = mongoose.connection;
+//db.on('error', console.error('Erreur de connexion'));
+
+const API_PORT = process.env.API_PORT || 3001;
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+router.get('/', (req, res) => {
+    res.json({ message: 'Hello, World!' });
+});
+router.get('/comments', (req, res) => {
+    Comment.find((err, comments) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true, data: comments });
+    });
+});
+
+app.use('/api', router);
+
+app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
+
+async function findDB () {
+    const firstElem = await Base.findOne();
+    res = firstElem.themeArray;
+    console.log(res[0].cardArray);
+}
+
+async function findAll () {
+    const filter = {};
+    const all = await Base.find(filter);
+    return all;
+}
+
