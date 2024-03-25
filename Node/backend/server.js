@@ -10,33 +10,27 @@ mongoose.connect("mongodb://localhost:3010/");
 var db = mongoose.connection;
 //db.on('error', console.error('Erreur de connexion'));
 
+async function findDB () {
+    const firstElem = await Base.findOne();
+    res = firstElem.themeArray;
+    //console.log(res);
+    return res;
+}
+
 const API_PORT = process.env.API_PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use('/api', router);
+app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
 
 router.get('/', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });
-router.get('/comments', (req, res) => {
+router.get('/getDB', (req, res) => {
     Comment.find((err, comments) => {
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, data: comments });
+        return res.json({ success: true, data: findDB() });
     });
 });
 
-app.use('/api', router);
-
-app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
-
-async function findDB () {
-    const firstElem = await Base.findOne();
-    res = firstElem.themeArray;
-    console.log(res[0].cardArray);
-}
-
-async function findAll () {
-    const filter = {};
-    const all = await Base.find(filter);
-    return all;
-}
 
