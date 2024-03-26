@@ -26,11 +26,14 @@ app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
 router.get('/', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });
-router.get('/getDB', (req, res) => {
-    Comment.find((err, comments) => {
-        if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, data: findDB() });
-    });
+router.get('/getDB', async (req, res) => {
+ //il n'y aura jamais de problèmes 
+  return res.json({ success: true, data: await findDB() });
+
 });
 
+router.post('/newFlashcard', (req, res) => {
+  console.log(req.body);
+  // faire le save
+});
 
