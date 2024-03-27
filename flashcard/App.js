@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css"; // Assurez-vous d'importer votre fichier de styles CSS
+import "./styles.css"; 
 
 const FlashcardApp = () => {
   const [flashcards, setFlashcards] = useState([
@@ -7,9 +7,9 @@ const FlashcardApp = () => {
       id: 1,
       question: "question",
       answer: "réponse",
-      flipped: false, // Utilisé pour indiquer si la carte est retournée
+      flipped: false, 
     },
-    // Ajoutez d'autres flashcards fictives selon vos besoins
+
   ]);
 
   const handleFlipCard = (id) => {
