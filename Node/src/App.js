@@ -1,10 +1,10 @@
-import "./styles.css";
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import Interface from './inteface';
 
 
 
-class Flashcard extends Component {
+class Container extends Component {
   constructor() {
     super();
     this.state = {
@@ -34,7 +34,7 @@ class Flashcard extends Component {
       .then((res) => {
         if (!res.success) this.setState({ error: res.error });
         else this.setState({ data: res.data });
-      }).then(console.log(this.state.data));
+      });
   }
 
   addFlashcardsToServer = (theme, question, response) => {
@@ -80,20 +80,10 @@ class Flashcard extends Component {
   render() {
     return (
       <div className="container">
-        <div className="App">
-          Test
-          <div>
-            <button onClick={() => this.addThemeToServer("PPC")}>addPPC</button>
-            <button onClick={() => this.rmThemeFromServer("PPC")}>rmPPC</button>
-          </div>
-          <div>
-            <button onClick={() => this.addFlashcardsToServer("PPC", "test1", "test2")}>addCard</button>
-            <button onClick={() => this.rmFlashcardsFromServer("PPC", 0)}>rmCard</button>
-          </div>
-        </div>
+        <Interface DATA = {this.state.data}/>
       </div>
     );
   }
 }
 
-export default Flashcard;
+export default Container;
