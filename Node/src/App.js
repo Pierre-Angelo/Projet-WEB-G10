@@ -34,14 +34,44 @@ class Flashcard extends Component {
       .then((res) => {
         if (!res.success) this.setState({ error: res.error });
         else this.setState({ data: res.data });
-      }).then(console.log(this.state.data[0]));
+      }).then(console.log(this.state.data));
   }
 
-  sendFlashcardsToServer = () => {
-    fetch('/api/newFlashcard', {
+  addFlashcardsToServer = (theme, question, response) => {
+    fetch('/api/addFlashcard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({"je test": "oui"}),
+      body: JSON.stringify({"theme": theme, "question": question, "response": response}),
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("marche pas");
+    });
+  }
+
+  rmFlashcardsFromServer = (theme, cardID) => {
+    fetch('/api/rmFlashcard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({"theme": theme, "cardID": cardID}),
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("marche pas");
+    });
+  }
+
+  addThemeToServer = (theme) => {
+    fetch('/api/addTheme', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({"theme": theme}),
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) console.log("marche pas");
+    });
+  }
+
+  rmThemeFromServer = (theme) => {
+    fetch('/api/rmTheme', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({"theme": theme}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
     });
@@ -51,9 +81,16 @@ class Flashcard extends Component {
     return (
       <div className="container">
         <div className="App">
-      Test
-      <button onClick={this.sendFlashcardsToServer}>test</button>
-    </div>
+          Test
+          <div>
+            <button onClick={() => this.addThemeToServer("PPC")}>addPPC</button>
+            <button onClick={() => this.rmThemeFromServer("PPC")}>rmPPC</button>
+          </div>
+          <div>
+            <button onClick={() => this.addFlashcardsToServer("PPC", "test1", "test2")}>addCard</button>
+            <button onClick={() => this.rmFlashcardsFromServer("PPC", 0)}>rmCard</button>
+          </div>
+        </div>
       </div>
     );
   }
