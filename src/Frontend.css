@@ -1,0 +1,359 @@
+html {background-color: lightblue;}
+
+h3{
+  background-color: #2a3345;
+  min-height: 4.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin-top: -8px;
+  font-family: Arial;
+  margin-left: -4.4%;
+  margin-right: -4.4%;
+  padding-top: 0.8vw;
+  padding-bottom: 0.2vw;
+  font-size: 5vw;
+  margin-bottom: 2px;
+}
+
+hr{
+  border-top: 0.5vmin solid black;
+  border-bottom: 0.5vmin solid black;
+  margin-left: -7px;
+  margin-right: -7px;
+}
+
+h2{
+  background-color: #2a3345;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin-top: -8px;
+  font-family: Arial;
+  font-size: 5vw;
+  margin-left: -4.4%;
+  margin-right: -4.4%;
+  padding-top: 0.8vw;
+  padding-bottom: 0.2vw;
+}
+
+button{
+  font-size: calc(1vw + 5px);
+  margin-right: 2%;
+  transition-duration: 0.5s;
+}
+
+.flashcard-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.flashcard {
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  perspective: 1000px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.flashcard.flipped .content {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+
+@media screen and (max-width:430px){ /*portables*/
+  .addflashcard{
+  height: 4.5vh;
+  border-radius: 3px;
+  background-color: #2a3345;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid black;
+  font-size: 2vh;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+  .inputthema{
+    font-size: 2.6vh;
+    margin-left: -2px;
+    border: 1px solid black;
+  }
+  .blockinput{
+    font-size:5px;
+  }
+  .theme{
+    width: 45%;
+    background-color:white;
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 3vh;
+    margin-top: 2vh;
+  }
+  
+  .theme:hover{
+    background-color: #2a3345;
+    color: white;
+  }
+  
+  .theme:focus {
+    background-color: #2a3345;
+    color: white;
+  }
+  .boutonsdetheme{
+    margin-top: -5px;
+    padding-right: -5px;
+  }
+  .ajout{
+  height: 3.8vh;
+  border-radius: 3px;
+  background-color: #2a3345;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid black;
+  font-size: 1.5vh;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-left: 1px;
+  vertical-align: top;
+  }
+  .cancel{
+    height: 4vh;
+    border-radius: 3px;
+    background-color: #2a3345;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 2vh;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: -80px;
+  }
+  .marge{
+    margin-top: 1.5vh;
+  }
+  .range{
+    margin-top: 1.5vh;
+  }
+  .ajouter{
+    height: 5vh;
+    border-radius: 3px;
+    background-color: #2a3345;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 2vh;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-top: 3%;
+  }
+  .revise{
+    height: 5vh;
+    border-radius: 3px;
+    background-color: #2a3345;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 2vh;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 1%;
+  }
+  .ligne{
+    display: inline;
+  }
+  .newflash{
+    font-size: 3vh;
+    font-family: Arial;
+    list-style-type: circle;
+    text-align: left;
+    padding: 0;
+  }
+  .upnew{
+    text-align: left;
+  }
+  .bullets{
+    font-size: 3vh;
+  }
+  .terminer{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+}
+
+@media screen and (min-width:430px){ /*ordis*/
+  .addflashcard{
+    height: 4.5vh;
+    border-radius: 3px;
+    background-color: #2a3345;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 2vh;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+    .inputthema{
+      font-size: 2.6vh;
+      margin-left: -2px;
+      border: 2px solid black;
+    }
+    .blockinput{
+      font-size:5px;
+    }
+    .theme{
+      width: 45%;
+      background-color:white;
+      border-radius: 3px;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid black;
+      font-size: 4vh;
+      margin-top: 5vh;
+    }
+    
+    .theme:hover{
+      background-color: #2a3345;
+      color: white;
+    }
+    
+    .theme:focus {
+      background-color: #2a3345;
+      color: white;
+    }
+    .boutonsdetheme{
+      margin-top: -9px;
+      padding-right: -5px;
+    }
+    .ajout{
+    height: 3.5vh;
+    border-radius: 3px;
+    background-color: #2a3345;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 1.5vh;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 1px;
+    vertical-align: top;
+    }
+    .cancel{
+      height: 4vh;
+      border-radius: 3px;
+      background-color: #2a3345;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid black;
+      font-size: 2vh;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-top: -80px;
+    }
+    .marge{
+      margin-top: 1.5vh;
+    }
+    .range{
+      margin-top: 1.5vh;
+    }
+    .ajouter{
+      height: 5vh;
+      border-radius: 3px;
+      background-color: #2a3345;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid black;
+      font-size: 2vh;
+      padding-left: 9px;
+      padding-right: 9px;
+      margin-top: 3%;
+    }
+    .revise{
+      height: 4vh;
+      border-radius: 3px;
+      background-color: #2a3345;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid black;
+      font-size: 1.5vh;
+      padding-left: 7px;
+      padding-right: 7px;
+      margin-top: 1%;
+    }
+    .ligne{
+      display: inline;
+    }
+    .newflash{
+      font-size: 3vh;
+      font-family: Arial;
+      list-style-type: circle;
+      text-align: left;
+      padding: 0;
+    }
+    .upnew{
+      text-align: left;
+    }
+    .bullets{
+      font-size: 3vh;
+    }
+    h3{
+      font-size: 3.5vw;
+    }
+    h2{
+      font-size: 3.5vw;
+    }
+}
+
+.addflashcard:hover{
+  background-color:white;
+  color: black;
+}
+
+.addflashcard:focus {
+  background-color:white;
+  color: black;
+}
