@@ -143,17 +143,9 @@ const App = (DATA) => {
     );
   };
 
+  const [flashcards, setFlashcards] = useState("je suis vide");
 
   const FlashcardApp = () => {
-    const [flashcards, setFlashcards] = useState([
-      {
-        id: 1,
-        question: "question",
-        answer: "réponse",
-        flipped: false, 
-      },
-  
-    ]);
   
     const handleFlipCard = (id) => {
       setFlashcards(
@@ -194,7 +186,7 @@ const App = (DATA) => {
     const [study, setStudy] = useState(false);
     
     const handleStudy = () => {
-      setStudy(true)
+      setStudy(true);
     };
 
     const handleNotStudy = () => {
@@ -317,7 +309,16 @@ const App = (DATA) => {
           {(DB).map((theme) => (
             <Theme 
             name = {theme.name}
-            handleClick={() => setActiveTheme(theme.cardArray)}
+            handleClick={() => 
+              (setActiveTheme(theme.cardArray),
+              setFlashcards(activeTheme.map((flashcard,index) => (
+                {
+                  id: index,
+                  question: flashcard.question,
+                  answer: flashcard.response,
+                  flipped: false,
+                }
+              ))))}
             />
           ))}
       </div>
