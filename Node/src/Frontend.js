@@ -20,8 +20,9 @@ const Theme = ({name,handleClick}) => {
 }
 
 
-const App = () => {
-  const db = {
+const App = (DATA) => {
+  let DB = DATA.DATA;
+  /*const db = {
     DCO : [
       { id: 1, question: "DCO 1", answer: "Réponse  DCo1" },
       { id: 2, question: "DCO 2", answer: "Réponse 2" },
@@ -38,7 +39,7 @@ const App = () => {
       { id: 3, question: "NAS 3", answer: "Réponse 3" },
     ],
     
-  };
+  };*/
 
   const Block = () => {
     return (
@@ -123,8 +124,8 @@ const App = () => {
       {visible && <div>
         {activeTheme.map((flashcard) => (
                 <div><button onClick={handleHide}><Flashcard
-                key={flashcard.id}
-                question={flashcard.answer}         
+                //key={flashcard.id}
+                question={flashcard.response}         
                 /></button>
                </div>))}
       </div>}
@@ -132,7 +133,7 @@ const App = () => {
       {!visible && <div>
                 {activeTheme.map((flashcard) => (
                 <div><button onClick={handleShow}><Flashcard
-                key={flashcard.id}
+                //key={flashcard.id}
                 question={flashcard.question}
                 /></button><button onClick={handleHide}>
                 Supprimer une flashcard
@@ -313,10 +314,10 @@ const App = () => {
     <div className="app">
       <div className="sidebar">
         <h3>Thèmes</h3>
-          {(Object.keys(db)).map((theme) => (
+          {(DB).map((theme) => (
             <Theme 
-            name = {theme}
-            handleClick={() => setActiveTheme(db[theme])}
+            name = {theme.name}
+            handleClick={() => setActiveTheme(theme.cardArray)}
             />
           ))}
       </div>

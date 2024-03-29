@@ -99,10 +99,6 @@ async function iniBase () {
                 {
                     question: 'What is the analysis formula in the context of function decomposition?', 
                     response: "It's the linear combination of elementary functions through their dot products with the function."
-                },
-                {
-                    question: 'In Segment Routing, what are the two basic operational states that guide the forwarding of packets?', 
-                    response: 'Continue, Next'
                 }
             ]
         }]

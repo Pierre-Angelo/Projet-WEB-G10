@@ -80,9 +80,8 @@ router.get('/', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });
 router.get('/getDB', async (req, res) => {
- //il n'y aura jamais de problèmes 
+ //il n'y aura jamais de problèmes
   return res.json({ success: true, data: await findDB() });
-
 });
 
 router.post('/addFlashcard', (req, res) => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import Interface from './inteface';
+import Frontend from './Frontend';
 
 
 
@@ -18,14 +19,7 @@ class Container extends Component {
 
   componentDidMount() {
     this.loadFlashcardsFromServer();
-    if (!this.pollInterval) {
-      this.pollInterval = setInterval(this.loadFlashcardsFromServer, 2000);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.pollInterval) clearInterval(this.pollInterval);
-    this.pollInterval = null;
+    
   }
 
   loadFlashcardsFromServer = () => {
@@ -80,7 +74,7 @@ class Container extends Component {
   render() {
     return (
       <div className="container">
-        <Interface DATA = {this.state.data}/>
+        <Frontend DATA = {this.state.data}/>
       </div>
     );
   }
