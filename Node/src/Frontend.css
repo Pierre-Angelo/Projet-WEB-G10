@@ -90,6 +90,25 @@ button{
   transform: rotateY(180deg);
 }
 
+.ellipse{
+  width: 60%;
+  background-color: white;
+  height: 6vh;
+  font-size: 3vh;
+  margin-top: 5px;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.dele{
+  width: 25%;
+  background-color: white;
+  height: 4vh;
+  font-size: 2vh;
+  border-radius: 10px;
+  border-width: 0.5px;
+  margin-left: -1.5%;
+}
 
 @media screen and (max-width:430px){ /*portables*/
   .addflashcard{

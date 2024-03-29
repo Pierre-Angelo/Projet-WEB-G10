@@ -75,20 +75,13 @@ const App = (DATA) => {
         <input className="inputthema" type="text"
         value={inputThema}
         onChange={handleChange}
-        placeholder="Type your new Thema..."
+        placeholder="Type your new theme..."
         />
         <button className="ajout" onClick={handleThema}>Ajouter</button></div>
         <p>New Thema : {addToData}</p>
       </div>
     );
   }
-
-  const Thema = () => { return(
-    <li>
-      <label htmlFor="theme">Theme : </label>
-      <input className='bullets' type="text" id="theme" name="theme"/>
-    </li>
-    )}
 
   const Question = () => { return(
     <li>
@@ -123,7 +116,7 @@ const App = (DATA) => {
       <div>
       {visible && <div>
         {activeTheme.map((flashcard) => (
-                <div><button onClick={handleHide}><Flashcard
+                <div><button className="ellipse" onClick={handleHide}><Flashcard
                 //key={flashcard.id}
                 question={flashcard.response}         
                 /></button>
@@ -135,8 +128,8 @@ const App = (DATA) => {
                 <div><button onClick={handleShow}><Flashcard
                 //key={flashcard.id}
                 question={flashcard.question}
-                /></button><button onClick={handleHide}>
-                Supprimer une flashcard
+                /></button><button className="dele" onClick={handleHide}>
+                Delete the flashcard
               </button>
                </div>))}</div>}
       </div>
@@ -204,7 +197,7 @@ const App = (DATA) => {
     return(
       <div>
   
-        {!isVisibl && !study &&
+        {!isVisibl && !study && Boolean(activeTheme.length) &&
         <div><hr className="separator" />
         
         <div className="app">
@@ -212,10 +205,10 @@ const App = (DATA) => {
         <HandleAnswer/>
         <div className="ligne">
         <button className="ajouter" onClick={handleShow}>
-           Ajouter une flashcard
+           Add a new flashcard
         </button>
           <button id = 'revise' className="revise" onClick={handleStudy}>
-            Réviser
+            Study
           </button>
         </div>
         </div>
@@ -229,13 +222,12 @@ const App = (DATA) => {
         
         <div className="terminer">
         <button className="ajouter" onClick={handleNotStudy}>
-          Terminer
+          Go back
         </button></div></div>}
         
         {isVisibl &&
            <div className="upnew"><hr className="separator" />
            <ul className="newflash">
-           <Thema/>
            <Question/>
            <Answer/>
            </ul>
@@ -281,23 +273,12 @@ const App = (DATA) => {
   }
 
   const Toggle = () => {
-    const [isVisible, setIsVisible] = useState(true);
     
-    const handleHide = () => {
-      setIsVisible(false)
-    }
   
     return(
         <div className="range"><CreateNewThema/><div className="marge">
-        <button className="cancel" onClick={handleHide}>
-            Hide
-        </button></div>
+   	</div>
         
-  
-        {isVisible &&
-            <div> 
-                <NewFlashcard/> 
-            </div>}
       </div>
     )
   }
@@ -305,7 +286,7 @@ const App = (DATA) => {
   return (
     <div className="app">
       <div className="sidebar">
-        <h3>Thèmes</h3>
+        <h3>Themes</h3>
           {(DB).map((theme) => (
             <Theme 
             name = {theme.name}
@@ -322,9 +303,8 @@ const App = (DATA) => {
             />
           ))}
       </div>
-      <Toggle/>
+      <Toggle/> <NewFlashcard/>
       {/*<NewFlashcard/><hr className="separator" />
-      => problème d'affichage à la réinitialisation
       => CSS*/}
     </div>
   );
