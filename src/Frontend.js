@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./App.css"; // Assurez-vous d'avoir le fichier CSS approprié
+import "./Frontend.css";
 
 
 const Flashcard = ({ question, answer }) => {
   return (
-    <div className="flashcard">
+    <div className="flashcardd">
       <div className="question">{question}</div>
       <div className="answer">{answer}</div>
     </div>
@@ -13,7 +13,7 @@ const Flashcard = ({ question, answer }) => {
 
 const Theme = ({name,handleClick}) => {
   return(
-    <div>
+    <div className="boutonsdetheme">
     <button className="theme" onClick={handleClick}>{name}</button>
     </div>
   )
@@ -70,36 +70,36 @@ const App = () => {
     };
 
     return (
-      <div>
-        <input type="text"
+      <div><div className="blockinput">
+        <input className="inputthema" type="text"
         value={inputThema}
         onChange={handleChange}
         placeholder="Type your new Thema..."
         />
-        <button onClick={handleThema}>Ajouter</button>
+        <button className="ajout" onClick={handleThema}>Ajouter</button></div>
         <p>New Thema : {addToData}</p>
       </div>
     );
   }
 
   const Thema = () => { return(
-    <li className='bullets'>
+    <li>
       <label htmlFor="theme">Theme : </label>
-      <input type="text" id="theme" name="theme"/>
+      <input className='bullets' type="text" id="theme" name="theme"/>
     </li>
     )}
 
   const Question = () => { return(
-    <li className='bullets'>
+    <li>
       <label htmlFor="question">Question : </label>
-      <input type="text" id="question" name="question"/>
+      <input className='bullets' type="text" id="question" name="question"/>
     </li>
     )}
     
     const Answer = () => {return(
-    <li className='bullets'>
+    <li>
       <label htmlFor="answer">Answer : </label>
-      <input type="text" id="answer" name="answer"/>
+      <input className='bullets'type="text" id="answer" name="answer"/>
     </li>
     )}
 
@@ -142,6 +142,52 @@ const App = () => {
     );
   };
 
+
+  const FlashcardApp = () => {
+    const [flashcards, setFlashcards] = useState([
+      {
+        id: 1,
+        question: "question",
+        answer: "réponse",
+        flipped: false, 
+      },
+  
+    ]);
+  
+    const handleFlipCard = (id) => {
+      setFlashcards(
+        flashcards.map((flashcard) =>
+          flashcard.id === id
+            ? { ...flashcard, flipped: !flashcard.flipped }
+            : flashcard
+        )
+      );
+    };
+  
+    return (
+      <div className="flashcard-app">
+        <div className="flashcard-container">
+          {flashcards.map((flashcard) => (
+            <div
+              key={flashcard.id}
+              className={`flashcard ${flashcard.flipped ? "flipped" : ""}`}
+              onClick={() => handleFlipCard(flashcard.id)}
+            >
+              <div className="content">
+                <div className="front">
+                  <p>{flashcard.question}</p>
+                </div>
+                <div className="back">
+                  <p>{flashcard.answer}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   const NewFlashcard = () => {
     const [isVisibl, setIsVisibl] = useState(false);
     const [study, setStudy] = useState(false);
@@ -171,30 +217,39 @@ const App = () => {
         <div className="app">
         <Block/>
         <HandleAnswer/>
-        <button onClick={handleShow}>
+        <div className="ligne">
+        <button className="ajouter" onClick={handleShow}>
            Ajouter une flashcard
         </button>
-        </div>
-        <div>
           <button id = 'revise' className="revise" onClick={handleStudy}>
             Réviser
           </button>
+        </div>
         </div>
         </div>}
 
         {!isVisibl && study &&
 
-        <div><hr className="separator" /><p>interface pour étudier</p>
-        <button onClick={handleNotStudy}>
+        <div><hr className="separator" />
+        
+        <FlashcardApp/>
+        
+        <div className="terminer">
+        <button className="ajouter" onClick={handleNotStudy}>
           Terminer
-        </button></div>}
+        </button></div></div>}
         
         {isVisibl &&
-           <div><hr className="separator" />
+           <div className="upnew"><hr className="separator" />
+           <ul className="newflash">
            <Thema/>
            <Question/>
            <Answer/>
-           <button onClick={handleHide}>
+           </ul>
+           <button className="ajouter">
+           Save
+           </button>         
+           <button className="ajouter" onClick={handleHide}>
            Cancel
            </button>
      </div>}
@@ -216,14 +271,14 @@ const App = () => {
     return(
       <div>
         {!isVisib && 
-        <button className="addFC" onClick={handleShow}>
+        <button className="addflashcard" onClick={handleShow}>
             Créer un nouveau thème
         </button>}
   
         {isVisib &&
-        <div>
+        <div className="marge">
         <HandleNewThema/>
-        <button onClick={handleHide}>
+        <button className="cancel" onClick={handleHide}>
         Cancel
         </button>
       </div>
@@ -240,10 +295,10 @@ const App = () => {
     }
   
     return(
-        <div><CreateNewThema/>
-        <button onClick={handleHide}>
+        <div className="range"><CreateNewThema/><div className="marge">
+        <button className="cancel" onClick={handleHide}>
             Hide
-        </button>
+        </button></div>
         
   
         {isVisible &&
