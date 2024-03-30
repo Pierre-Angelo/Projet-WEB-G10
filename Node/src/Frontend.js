@@ -117,7 +117,7 @@ const App = (DATA) => {
       {visible && <div>
         {activeTheme.map((flashcard) => (
                 <div><button className="ellipse" onClick={handleHide}><Flashcard
-                //key={flashcard.id}
+                key={flashcard.id}
                 question={flashcard.response}         
                 /></button>
                </div>))}
@@ -126,7 +126,7 @@ const App = (DATA) => {
       {!visible && <div>
                 {activeTheme.map((flashcard) => (
                 <div><button onClick={handleShow}><Flashcard
-                //key={flashcard.id}
+                key={flashcard.id}
                 question={flashcard.question}
                 /></button><button className="dele" onClick={handleHide}>
                 Delete the flashcard
@@ -257,7 +257,11 @@ const App = (DATA) => {
       <div>
         {!isVisib && 
         <button className="addflashcard" onClick={handleShow}>
-            Créer un nouveau thème
+            Add a new theme
+        </button>}
+        {!isVisib && 
+        <button className="addflashcard" onClick={handleShow}>
+            Delete an existing theme
         </button>}
   
         {isVisib &&
