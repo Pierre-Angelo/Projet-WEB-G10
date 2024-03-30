@@ -292,7 +292,7 @@ const App = (DATA) => {
             name = {theme.name}
             handleClick={() => 
               (setActiveTheme(theme.cardArray),
-              setFlashcards(activeTheme.map((flashcard,index) => (
+              setFlashcards(theme.cardArray.map((flashcard,index) => (
                 {
                   id: index,
                   question: flashcard.question,
