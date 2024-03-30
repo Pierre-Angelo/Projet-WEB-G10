@@ -174,9 +174,10 @@ const App = (DATA) => {
     );
   };
 
+  const [isVisibl, setIsVisibl] = useState(false);
+  const [study, setStudy] = useState(false);
+  
   const NewFlashcard = () => {
-    const [isVisibl, setIsVisibl] = useState(false);
-    const [study, setStudy] = useState(false);
     
     const handleStudy = () => {
       setStudy(true);
