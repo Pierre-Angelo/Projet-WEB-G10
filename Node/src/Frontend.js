@@ -77,8 +77,18 @@ const App = (DATA) => {
         onChange={handleChange}
         placeholder="Type your new theme..."
         />
-        <button className="ajout" onClick={handleThema}>Ajouter</button></div>
+        <button className="ajout" onClick={handleThema}>Add</button></div>
         <p>New Thema : {addToData}</p>
+      </div>
+    );
+  }
+
+  const HandelDeleteThema = () => {
+
+    return (
+      <div>
+        <p>Thema to delete : {activeThemeName}</p>
+        <button className="ajout" /*</div>onClick={() => ()}*/>Delete</button>
       </div>
     );
   }
@@ -98,6 +108,7 @@ const App = (DATA) => {
     )}
 
   const  [activeTheme, setActiveTheme] = useState([])
+  const  [activeThemeName, setActiveThemeName] = useState("")
 
   //const handleDeleteFlashcard = (id) => {};
 
@@ -136,7 +147,7 @@ const App = (DATA) => {
     );
   };
 
-  const [flashcards, setFlashcards] = useState("je suis vide");
+  const [flashcards, setFlashcards] = useState([]);
 
   const FlashcardApp = () => {
   
@@ -245,6 +256,7 @@ const App = (DATA) => {
 
   const CreateNewThema = () => {
     const [isVisib, setIsVisib] = useState(false);
+    const [isAdd, setIsAdd] = useState(false);
     
     const handleHide = () => {
       setIsVisib(false)
@@ -253,21 +265,39 @@ const App = (DATA) => {
     const handleShow = () => {
       setIsVisib(true)
     }
+
+    const handleAdd = () => {
+      setIsAdd(true)
+      setIsVisib(true)
+    }
+
+    const handleDell = () => {
+      setIsAdd(false)
+      setIsVisib(true)
+    }
   
     return(
       <div>
         {!isVisib && 
-        <button className="addflashcard" onClick={handleShow}>
+        <button className="addflashcard" onClick={handleAdd}>
             Add a new theme
         </button>}
         {!isVisib && 
-        <button className="addflashcard" onClick={handleShow}>
+        <button className="addflashcard" onClick={handleDell}>
             Delete an existing theme
         </button>}
   
-        {isVisib &&
+        {isVisib && isAdd &&
         <div className="marge">
         <HandleNewThema/>
+        <button className="cancel" onClick={handleHide}>
+        Cancel
+        </button>
+      </div>
+            }
+        {isVisib && !isAdd &&
+        <div className="marge">
+        <HandelDeleteThema/>
         <button className="cancel" onClick={handleHide}>
         Cancel
         </button>
@@ -297,6 +327,7 @@ const App = (DATA) => {
             name = {theme.name}
             handleClick={() => 
               (setActiveTheme(theme.cardArray),
+              setActiveThemeName(theme.name),
               setFlashcards(theme.cardArray.map((flashcard,index) => (
                 {
                   id: index,
