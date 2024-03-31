@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Frontend.css";
 
-
 const Flashcard = ({ question, answer }) => {
   return (
     <div className="flashcardd">
@@ -20,8 +19,13 @@ const Theme = ({name,handleClick}) => {
 }
 
 
-const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, rmFlashcardsFromServer}) => {
+const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, rmFlashcardsFromServer, loadFlashcardsFromServer}) => {
   const DB = DATA;
+
+  function refresh() {
+    window.location.reload(false);
+    //loadFlashcardsFromServer();
+  }
 
   const Block = () => {
     return (
@@ -49,8 +53,9 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
 
     const handleThema = () => {
       setAddToData(inputThema);
-      setInputThema('');
       addThemeToServer(inputThema);
+      setInputThema('');
+      refresh();
     };
 
     return (
@@ -66,41 +71,55 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     );
   }
 
-  const HandelDeleteThema = () => {
+  const HandleNewCard = () => {
+    const [inputQ, setInputQ] = useState('');
+    const [inputA, setInputA] = useState('');
+
+    const handleChangeQ = (event) => {
+      setInputQ(event.target.value);
+    };
+    const handleChangeA = (event) => {
+      setInputA(event.target.value);
+    };
+
+    const handleCard = () => {
+      addFlashcardsToServer(activeThemeName, inputQ, inputA);
+      setInputQ('');
+      setInputA('');
+      refresh();
+    };
 
     return (
-      <div>
-        <p>Thema to delete : {activeThemeName}</p>
-        <button className="ajout" onClick={() => rmThemeFromServer(activeThemeName)}>Delete</button>
+      <div><div className="blockinput">
+        <input className="inputthema" type="text"
+        value={inputQ}
+        onChange={handleChangeQ}
+        placeholder="Type your question..."
+        />
+        <input className="inputthema" type="text"
+        value={inputA}
+        onChange={handleChangeA}
+        placeholder="Type your answer..."
+        />
+        <button className="ajout" onClick={handleCard}>Add</button></div>
       </div>
     );
   }
 
-  const  [question, setQuestion] = useState("")
+  const HandelDeleteThema = () => {
 
-  const handleQuestionChange = (event) => {
-    setQuestion(event.target.value);
-  };
+    const handleThema = () => {
+      rmThemeFromServer(activeThemeName);
+      refresh();
+    }
 
-  const Question = () => { return(
-    <li>
-      <label htmlFor="question">Question : </label>
-      <input className='bullets' type="text" id="question" name="question"/>
-    </li>
-    )}
-
-    const  [answer, setAnswer] = useState("")
-
-    const handleAnswerChange = (event) => {
-      setAnswer(event.target.value);
-    };
-    
-    const Answer = () => {return(
-    <li>
-      <label htmlFor="answer">Answer : </label>
-      <input className='bullets'type="text" id="answer" name="answer"/>
-    </li>
-    )}
+    return (
+      <div>
+        <p>Thema to delete : {activeThemeName}</p>
+        <button className="ajout" onClick={handleThema}>Delete</button>
+      </div>
+    );
+  }
 
   const  [activeTheme, setActiveTheme] = useState([])
   const  [activeThemeName, setActiveThemeName] = useState("")
@@ -116,6 +135,11 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
 
     const handleShow = () => {
       setVisible(true);
+    };
+
+    const handleDel = (i) => {
+      rmFlashcardsFromServer(activeThemeName, i);
+      refresh();
     };
 
     return (
@@ -141,7 +165,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
                 question={flashcard.question}
               />
             </button>
-            <button className="dele" onClick={() => rmFlashcardsFromServer(activeThemeName, index)}>
+            <button className="dele" onClick={() => handleDel(index)}>
               Delete the flashcard
             </button>
           </div>))}
@@ -246,10 +270,9 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
             <div>
               Current theme : {activeThemeName}
             </div>
-           <Question/>
-           <Answer/>
+           <HandleNewCard/>
            </ul>
-           <button className="ajouter" onClick={addFlashcardsToServer(activeThemeName,question,answer)}>
+           <button className="ajouter" onClick={() => addFlashcardsToServer(activeThemeName,question,answer)}>
            Save
            </button>         
            <button className="ajouter" onClick={handleHide}>

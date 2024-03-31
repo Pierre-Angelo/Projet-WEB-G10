@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import Frontend from './Frontend';
 
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 class Container extends Component {
   constructor() {
     super();
@@ -21,6 +16,7 @@ class Container extends Component {
     this.rmFlashcardsFromServer = this.rmFlashcardsFromServer.bind(this);
     this.addThemeToServer = this.addThemeToServer.bind(this);
     this.rmThemeFromServer = this.rmThemeFromServer.bind(this);
+    this.loadFlashcardsFromServer = this.loadFlashcardsFromServer.bind(this)
   }
 
   componentDidMount() {
@@ -44,7 +40,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme, "question": question, "response": response}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    }).then(this.loadFlashcardsFromServer());
+    });
   }
 
   rmFlashcardsFromServer = (theme, cardID) => {
@@ -54,7 +50,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme, "cardID": cardID}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    }).then(this.loadFlashcardsFromServer());
+    });
   }
 
   addThemeToServer = (theme) => {
@@ -64,7 +60,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    }).then(this.loadFlashcardsFromServer());
+    });
   }
 
   rmThemeFromServer = (theme) => {
@@ -74,7 +70,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    }).then(this.loadFlashcardsFromServer());
+    });
   }
 
   render() {
@@ -85,6 +81,7 @@ class Container extends Component {
         rmFlashcardsFromServer={this.rmFlashcardsFromServer}
         addThemeToServer={this.addThemeToServer}
         rmThemeFromServer={this.rmThemeFromServer}
+        loadFlashcardsFromServer={this.loadFlashcardsFromServer}
         />
       </div>
     );
