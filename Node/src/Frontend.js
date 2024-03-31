@@ -235,6 +235,19 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
   
     return(
       <div>
+
+        {!isVisibl && !study && !Boolean(activeTheme.length) &&
+        <div><hr className="separator" />
+        
+        <div className="app">
+        <HandleAnswer/>
+        <div className="ligne">
+        <button className="ajouter" onClick={handleShow}>
+           Add a new flashcard
+        </button>
+        </div>
+        </div>
+        </div>}
   
         {!isVisibl && !study && Boolean(activeTheme.length) &&
         <div><hr className="separator" />
