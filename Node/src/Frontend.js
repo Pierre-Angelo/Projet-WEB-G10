@@ -22,24 +22,6 @@ const Theme = ({name,handleClick}) => {
 
 const App = (DATA) => {
   let DB = DATA.DATA;
-  /*const db = {
-    DCO : [
-      { id: 1, question: "DCO 1", answer: "Réponse  DCo1" },
-      { id: 2, question: "DCO 2", answer: "Réponse 2" },
-      { id: 3, question: "DCO 3", answer: "Réponse 3" },
-    ],
-    MAS : [
-      { id: 1, question: "MAS 1", answer: "Réponse MaS1" },
-      { id: 2, question: "MAS 2", answer: "Réponse 2" },
-      { id: 3, question: "MAS 3", answer: "Réponse 3" },
-    ],
-    NAS : [
-      { id: 1, question: "NAS 1", answer: "Réponse NAs1" },
-      { id: 2, question: "NAS 2", answer: "Réponse 2" },
-      { id: 3, question: "NAS 3", answer: "Réponse 3" },
-    ],
-    
-  };*/
 
   const Block = () => {
     return (
@@ -126,23 +108,31 @@ const App = (DATA) => {
     return (
       <div>
       {visible && <div>
-        {activeTheme.map((flashcard) => (
-                <div><button className="ellipse" onClick={handleHide}><Flashcard
-                key={flashcard.id}
+        {activeTheme.map((flashcard,index) => (
+          <div>
+            <button className="ellipse" onClick={handleHide}>
+              <Flashcard
+                key={index}
                 question={flashcard.response}         
-                /></button>
-               </div>))}
+              />
+            </button>
+          </div>))}
       </div>}
 
       {!visible && <div>
-                {activeTheme.map((flashcard) => (
-                <div><button onClick={handleShow}><Flashcard
-                key={flashcard.id}
+        {activeTheme.map((flashcard, index) => (
+          <div>
+            <button onClick={handleShow}>
+              <Flashcard
+                key={index}
                 question={flashcard.question}
-                /></button><button className="dele" onClick={handleHide}>
-                Delete the flashcard
-              </button>
-               </div>))}</div>}
+              />
+            </button>
+            <button className="dele" onClick={handleHide}>
+              Delete the flashcard
+            </button>
+          </div>))}
+      </div>}
       </div>
     );
   };
@@ -219,9 +209,9 @@ const App = (DATA) => {
         <button className="ajouter" onClick={handleShow}>
            Add a new flashcard
         </button>
-          <button id = 'revise' className="revise" onClick={handleStudy}>
-            Study
-          </button>
+        <button id = 'revise' className="revise" onClick={handleStudy}>
+          Study
+        </button>
         </div>
         </div>
         </div>}
@@ -322,8 +312,9 @@ const App = (DATA) => {
     <div className="app">
       <div className="sidebar">
         <h3>Themes</h3>
-          {(DB).map((theme) => (
+          {(DB).map((theme, index) => (
             <Theme 
+            key = {index}
             name = {theme.name}
             handleClick={() => 
               (setActiveTheme(theme.cardArray),
