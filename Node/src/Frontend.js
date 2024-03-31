@@ -158,7 +158,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
 
       {!visible && <div>
         {activeTheme.map((flashcard, index) => (
-          <div>
+          <div key={index}>
             <button onClick={handleShow}>
               <Flashcard
                 key={index}
