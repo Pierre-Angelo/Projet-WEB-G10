@@ -3,6 +3,9 @@ import 'whatwg-fetch';
 import Frontend from './Frontend';
 
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 class Container extends Component {
   constructor() {

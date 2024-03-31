@@ -76,12 +76,24 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     );
   }
 
+  const  [question, setQuestion] = useState("")
+
+  const handleQuestionChange = (event) => {
+    setQuestion(event.target.value);
+  };
+
   const Question = () => { return(
     <li>
       <label htmlFor="question">Question : </label>
       <input className='bullets' type="text" id="question" name="question"/>
     </li>
     )}
+
+    const  [answer, setAnswer] = useState("")
+
+    const handleAnswerChange = (event) => {
+      setAnswer(event.target.value);
+    };
     
     const Answer = () => {return(
     <li>
@@ -129,7 +141,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
                 question={flashcard.question}
               />
             </button>
-            <button className="dele" onClick={handleHide}>
+            <button className="dele" onClick={() => rmFlashcardsFromServer(activeThemeName, index)}>
               Delete the flashcard
             </button>
           </div>))}
@@ -231,10 +243,13 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
         {isVisibl &&
            <div className="upnew"><hr className="separator" />
            <ul className="newflash">
+            <div>
+              Current theme : {activeThemeName}
+            </div>
            <Question/>
            <Answer/>
            </ul>
-           <button className="ajouter">
+           <button className="ajouter" onClick={addFlashcardsToServer(activeThemeName,question,answer)}>
            Save
            </button>         
            <button className="ajouter" onClick={handleHide}>
@@ -309,9 +324,6 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     )
   }
 
-  function test () {
-    console.log(DB)
-  }
   return (
     <div className="app">
       <div className="sidebar">
