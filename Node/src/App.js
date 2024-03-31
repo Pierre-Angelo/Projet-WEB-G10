@@ -38,7 +38,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme, "question": question, "response": response}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    });
+    }).then(this.loadFlashcardsFromServer());
   }
 
   rmFlashcardsFromServer = (theme, cardID) => {
@@ -48,7 +48,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme, "cardID": cardID}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    });
+    }).then(this.loadFlashcardsFromServer());
   }
 
   addThemeToServer = (theme) => {
@@ -58,7 +58,7 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    });
+    }).then(this.loadFlashcardsFromServer());
   }
 
   rmThemeFromServer = (theme) => {
@@ -68,16 +68,18 @@ class Container extends Component {
       body: JSON.stringify({"theme": theme}),
     }).then(res => res.json()).then((res) => {
       if (!res.success) console.log("marche pas");
-    });
+    }).then(this.loadFlashcardsFromServer());
   }
 
   render() {
     return (
       <div className="container">
-        <Frontend DATA = {this.state.data}/>
+        <Interface DATA = {this.state.data}/>
       </div>
     );
   }
 }
+//<Frontend DATA = {this.state.data}/>
+//<Interface DATA = {this.state.data}/>
 
 export default Container;
