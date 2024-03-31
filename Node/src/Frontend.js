@@ -20,8 +20,8 @@ const Theme = ({name,handleClick}) => {
 }
 
 
-const App = (DATA) => {
-  let DB = DATA.DATA;
+const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, rmFlashcardsFromServer}) => {
+  const DB = DATA;
 
   const Block = () => {
     return (
@@ -50,6 +50,7 @@ const App = (DATA) => {
     const handleThema = () => {
       setAddToData(inputThema);
       setInputThema('');
+      addThemeToServer(inputThema);
     };
 
     return (
@@ -70,7 +71,7 @@ const App = (DATA) => {
     return (
       <div>
         <p>Thema to delete : {activeThemeName}</p>
-        <button className="ajout" /*</div>onClick={() => ()}*/>Delete</button>
+        <button className="ajout" onClick={() => rmThemeFromServer(activeThemeName)}>Delete</button>
       </div>
     );
   }
@@ -308,6 +309,9 @@ const App = (DATA) => {
     )
   }
 
+  function test () {
+    console.log(DB)
+  }
   return (
     <div className="app">
       <div className="sidebar">

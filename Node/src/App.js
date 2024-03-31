@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import Interface from './inteface';
 import Frontend from './Frontend';
 
 
@@ -15,6 +14,10 @@ class Container extends Component {
       id:''
     };
     this.pollInterval = null;
+    this.addFlashcardsToServer = this.addFlashcardsToServer.bind(this);
+    this.rmFlashcardsFromServer = this.rmFlashcardsFromServer.bind(this);
+    this.addThemeToServer = this.addThemeToServer.bind(this);
+    this.rmThemeFromServer = this.rmThemeFromServer.bind(this);
   }
 
   componentDidMount() {
@@ -74,7 +77,12 @@ class Container extends Component {
   render() {
     return (
       <div className="container">
-        <Interface DATA = {this.state.data}/>
+        <Frontend DATA = {this.state.data}
+        addFlashcardsToServer={this.addFlashcardsToServer}
+        rmFlashcardsFromServer={this.rmFlashcardsFromServer}
+        addThemeToServer={this.addThemeToServer}
+        rmThemeFromServer={this.rmThemeFromServer}
+        />
       </div>
     );
   }
