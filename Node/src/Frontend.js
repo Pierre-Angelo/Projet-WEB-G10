@@ -236,7 +236,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     return(
       <div>
 
-        {!isVisibl && !study && !Boolean(activeTheme.length) &&
+        {!isVisibl && !study && !Boolean(activeTheme.length) && (activeThemeName != "") &&
         <div><hr className="separator" />
         
         <div className="app">
