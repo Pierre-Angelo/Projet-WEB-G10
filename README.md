@@ -1,6 +1,7 @@
 # Web Project - Flashcard App
 
-[to do] evaluator
+The 4 main files are `App.js`, `Frontend.js`, `server.js` and `iniDB.js`.<br>
+If you are an **evaluator**, we recommend only reading sections **Configure and launch**, **Features** and **Usage** .
 
 The objective of this project is to implement a MERN (Mongo - Express - React - Node) Flashcard App. For this project, we will be using a server-client configuration with a database. The goal is that a user could fetch and edit flashcards from the database (with the help of the server) and then use them to study.
 
@@ -77,4 +78,11 @@ The following features are supported in this project.
 
 ## Usage
 
-[to do]
+While everything is launched :
+
+1. To add a theme : click on the `Add a new theme` button.
+2. To remove a theme : click on the theme to delete, then click on the `Delete an existing theme` button.
+3. To add a flashcard : click on the theme you want to edit, then click on the `Add a new flashcard` button.
+4. To remove a flashcard : click on the theme you want to edit, then click on the `Delete the flashcard` button next to the question of the flashcard to delete.
+5. To visualize the flashcards of a specific theme : click on the theme you want to study, then click on the `Study` button.
+
