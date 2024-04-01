@@ -185,9 +185,20 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     );
   };
 
-  const [flashcards, setFlashcards] = useState([]);
+  
 
   const FlashcardApp = () => {
+    const [flashcards, setFlashcards] = useState(
+      activeTheme.map((flashcard,index) => (
+        {
+          id: index,
+          question: flashcard.question,
+          answer: flashcard.response,
+          flipped: false,
+        }
+      )));
+
+    
   
     const handleFlipCard = (id) => {
       setFlashcards(
@@ -202,7 +213,8 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     return (
       <div className="flashcard-app">
         <div className="flashcard-container">
-          {flashcards.map((flashcard) => (
+
+          <ul>{ flashcards.map((flashcard) => (
             <div
               key={flashcard.id}
               className={`flashcard ${flashcard.flipped ? "flipped" : ""}`}
@@ -210,14 +222,14 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
             >
               <div className="content">
                 <div className="front">
-                  <p>{flashcard.question}</p>
+                <strong>{flashcard.question}</strong>
                 </div>
                 <div className="back">
-                  <p>{flashcard.answer}</p>
+                  <strong>{flashcard.answer}</strong>
                 </div>
               </div>
             </div>
-          ))}
+          ))}</ul>
         </div>
       </div>
     );
@@ -281,7 +293,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
 
         <div><hr className="separator" />
         
-        <FlashcardApp/>
+        <FlashcardApp />
         
         <div className="terminer">
         <button className="ajouter" onClick={handleNotStudy}>
@@ -371,15 +383,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
             name = {theme.name}
             handleClick={() => 
               (setActiveTheme(theme.cardArray),
-              setActiveThemeName(theme.name),
-              setFlashcards(theme.cardArray.map((flashcard,index) => (
-                {
-                  id: index,
-                  question: flashcard.question,
-                  answer: flashcard.response,
-                  flipped: false,
-                }
-              ))))}
+              setActiveThemeName(theme.name))}
             />
           ))}
       </div>
