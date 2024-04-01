@@ -104,6 +104,10 @@ button{
   margin-top: 5px;
   border-radius: 10px;
   border-width: 1px;
+  max-width:20em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-align:center
 }
 
 .dele{

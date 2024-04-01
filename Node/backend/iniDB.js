@@ -89,7 +89,7 @@ async function iniBase () {
                     response: "It's a function f: E×E→R on vector space E that is commutative, distributive over vector addition, compatible with scalar multiplication, and positive definite."
                 },
                 {
-                    question: 'What is the definition of norm??', 
+                    question: 'What is the definition of norm?', 
                     response: "The norm is the square root of the dot product of a vector with itself, representing the vector's magnitude."
                 },
                 {
@@ -99,6 +99,10 @@ async function iniBase () {
                 {
                     question: 'What is the analysis formula in the context of function decomposition?', 
                     response: "It's the linear combination of elementary functions through their dot products with the function."
+                },
+                {
+                    question: 'In Segment Routing, what are the two basic operational states that guide the forwarding of packets?', 
+                    response: 'Continue, Next'
                 }
             ]
         }]

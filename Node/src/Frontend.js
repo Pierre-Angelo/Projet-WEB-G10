@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Frontend.css";
 
-const Flashcard = ({ question, answer }) => {
+const Flashcard = ({question} ) => {
   return (
     <div className="flashcardd">
       <div className="question">{question}</div>
-      <div className="answer">{answer}</div>
     </div>
   );
 };
@@ -66,7 +65,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
         placeholder="Type your new theme..."
         />
         <button className="ajout" onClick={handleThema}>Add</button></div>
-        <p>New Thema : {addToData}</p>
+        <p>New Theme : {addToData}</p>
       </div>
     );
   }
@@ -126,7 +125,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
 
     return (
       <div>
-        <p>Thema to delete : {activeThemeName}</p>
+        <p>Theme to delete : {activeThemeName}</p>
         <button className="ajout" onClick={handleThema}>Delete</button>
       </div>
     );
@@ -160,7 +159,6 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
           <div>
             <button className="ellipse" onClick={handleHide}>
               <Flashcard
-                key={index}
                 question={flashcard.response}         
               />
             </button>
@@ -170,7 +168,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
       {!visible && <div>
         {activeTheme.map((flashcard, index) => (
           <div key={index}>
-            <button onClick={handleShow}>
+            <button className="ellipse" onClick={handleShow}>
               <Flashcard
                 key={index}
                 question={flashcard.question}
@@ -282,7 +280,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
         <button className="ajouter" onClick={handleShow}>
            Add a new flashcard
         </button>
-        <button id = 'revise' className="revise" onClick={handleStudy}>
+        <button id = 'revise' className="ajouter" onClick={handleStudy}>
           Study
         </button>
         </div>
