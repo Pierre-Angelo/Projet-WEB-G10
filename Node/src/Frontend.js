@@ -90,18 +90,29 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
     };
 
     return (
-      <div><div className="blockinput">
-        <input className="inputthema" type="text"
-        value={inputQ}
-        onChange={handleChangeQ}
-        placeholder="Type your question..."
-        />
-        <input className="inputthema" type="text"
-        value={inputA}
-        onChange={handleChangeA}
-        placeholder="Type your answer..."
-        />
-        <button className="ajout" onClick={handleCard}>Add</button></div>
+      <div>
+        <ul className="newflash">
+        <div>
+          Current theme : {activeThemeName}
+        </div>
+      <div className="blockinput">
+          <div>
+            <input className="inputthema" type="text"
+            value={inputQ}
+            onChange={handleChangeQ}
+            placeholder="Type your question..."
+            />
+          </div>
+          <div>
+            <input className="inputthema" type="text"
+            value={inputA}
+            onChange={handleChangeA}
+            placeholder="Type your answer..."
+            />
+          </div>
+        </div>
+        </ul>
+        <button className="ajouter" onClick={handleCard}>Save</button>
       </div>
     );
   }
@@ -279,18 +290,8 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
         
         {isVisibl &&
            <div className="upnew"><hr className="separator" />
-           <ul className="newflash">
-            <div>
-              Current theme : {activeThemeName}
-            </div>
-           <HandleNewCard/>
-           </ul>
-           <button className="ajouter" onClick={() => addFlashcardsToServer(activeThemeName,question,answer)}>
-           Save
-           </button>         
-           <button className="ajouter" onClick={handleHide}>
-           Cancel
-           </button>
+            <HandleNewCard/>    
+            <button className="ajouter" onClick={handleHide}>Cancel</button>
      </div>}
       </div>
     )
@@ -324,7 +325,7 @@ const App = ({DATA, addThemeToServer, rmThemeFromServer, addFlashcardsToServer, 
         <button className="addflashcard" onClick={handleAdd}>
             Add a new theme
         </button>}
-        {!isVisib && 
+        {!isVisib && activeThemeName != "" &&
         <button className="addflashcard" onClick={handleDell}>
             Delete an existing theme
         </button>}
