@@ -89,7 +89,7 @@ router.post('/addFlashcard', (req, res) => {
   addCard(req.body.theme, req.body.question, req.body.response);
 });
 router.post('/rmFlashcard', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   rmCard(req.body.theme, req.body.cardID);
 });
 router.post('/addTheme', (req, res) => {
