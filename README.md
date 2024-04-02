@@ -10,6 +10,8 @@ The objective of this project is to implement a MERN (Mongo - Express - React - 
 - NodeJs
 - The Mongodb server executable for your OS, which can be found [here](https://www.mongodb.com/try/download/enterprise)
 - nodemon
+- mongoose
+- express JS
 
 ## Configure and launch
 
